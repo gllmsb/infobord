@@ -6,6 +6,7 @@ import { myFetch } from "../utils/apiUtils.js"
 
 export const busplan = async () => {
     const container = document.getElementById('busplan')
+    container.innerHTML = '';
     
     const endpoint = `https://xmlopen.rejseplanen.dk/bin/rest.exe/multiDepartureBoard?id1=851400602&id2=851973402&rttime&format=json&useBus=1`
     const api_data = await myFetch(endpoint)
@@ -42,6 +43,8 @@ export const busplan = async () => {
         
     }
 
+    setTimeout(busplan, 3600)
+
 }
 
 const calcRemainingTime = (departure_time) => {
@@ -63,7 +66,7 @@ const calcRemainingTime = (departure_time) => {
         depMinutes 
     ).getTime();
 
-    console.log(new Date(depTimeStamp))
+    // console.log(new Date(depTimeStamp))
 
     const diff_seconds = Math.abs(Math.floor((depTimeStamp - curTimeStamp) / 1000));
     const hours = Math.floor(diff_seconds / 3600);

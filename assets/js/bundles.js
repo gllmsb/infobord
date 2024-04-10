@@ -7,3 +7,6 @@ menu()
 
 import { busplan } from './components/busplan.js'
 busplan()
+
+import { events } from './components/events.js'
+events()
